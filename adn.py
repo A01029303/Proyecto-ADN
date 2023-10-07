@@ -1,5 +1,5 @@
 def lectura_de_archivos_base_de_datos(nombre_base_de_datos):
-    f=open(nombre_base_de_datos) #Para abrir la base de datos 
+    f=open(nombre_base_de_datos) #Para abrir la base de datos
     base_de_datos=[]
     for linea in f:
         linea=linea[0:-1]
@@ -29,23 +29,22 @@ def lectura_de_secuencias(secuencias):
         secuencia.append(linea1)
     return secuencia
 
-def compara_str(basededatos, secuenciaPrueba):
+def compara_str(basededatos, secuencia_prueba):
     for k in range(len(basededatos)): 
         nombre= basededatos[k][0]
         numeros= basededatos[k][1:]
-        if numeros== secuenciaPrueba:
+        if numeros== secuencia_prueba:
             break
     return nombre
-
 
 def main():
     pass
     basededatos=lectura_de_archivos_base_de_datos("/workspaces/Proyecto-ADN/dna/databases/large.csv")
     print(basededatos)
     secuencias = lectura_de_secuencias("/workspaces/Proyecto-ADN/dna/sequences/1.txt")
-    secuenciaPrueba = [9,13,8,26,15,25,41,39]
+    secuencia_prueba = [9,13,8,26,15,25,41,39]
     
-    r = compara_str(basededatos,secuenciaPrueba)
+    r = compara_str(basededatos,secuencia_prueba)
     print(r)
 
 if __name__ == '__main__':
