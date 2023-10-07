@@ -10,6 +10,9 @@ def main():
     pass
     x=lectura_de_archivos("/workspaces/Proyecto-ADN/dna/databases/large.csv")
     print(x)
+    r = compara_str(x,[37,47,10,23,5,48,28,23])
 
 if __name__ == '__main__':
     main()
+
+
