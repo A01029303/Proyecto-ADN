@@ -41,6 +41,22 @@ def compara_str(base_datos, secuencia_prueba):
             break
     return nombre
 
+def buscar_str(secuencias,strprueba):
+    contador = 0
+    for cadena in secuencias:
+        for i in range(len(cadena)):
+
+            contar_str = strprueba[0] #Pasar de lista a string
+            listastr = list(contar_str) #Poner cada letra divida en comas en una lista
+
+            substring = cadena[i:i+len(listastr)]
+            #print(len(listastr))
+
+            if contar_str == substring:
+                contador = contador + 1
+        print(contador)
+            #return contador
+                
 def main():
     pass
 
@@ -50,17 +66,25 @@ def main():
     ruta_b = directorio / subdirectorio_base_datos / archivo_b
  
     base_datos = lectura_de_archivos_base_de_datos(ruta_b)
+    #print(base_datos)
 
     subdirectorio_secuencias = Path("dna/sequences")
     archivo_s = sys.argv[2]
     ruta_s = directorio / subdirectorio_secuencias / archivo_s
 
     secuencias = lectura_de_secuencias(ruta_s)
-    
-    secuencia_prueba = [9,13,33,26,45,11,36,39]
+    #print(secuencias)
 
-    r = compara_str(base_datos, secuencia_prueba)
-    print(r)
+    strprueba = ["TTTTTTCT"]
+    
+    buscarstr = buscar_str(secuencias,strprueba)
+    #print (buscarstr)
+
+
+    #secuencia_prueba = [9,13,33,26,45,11,36,39]
+
+    #r = compara_str(base_datos, secuencia_prueba)
+    #print(r)
 
 if __name__ == '__main__':
     main()
