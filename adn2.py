@@ -42,21 +42,31 @@ def compara_str(base_datos, secuencia_prueba):
     return nombre
 
 def buscar_str(secuencias,strprueba):
-    contador = 0
-    for cadena in secuencias:
-        for i in range(len(cadena)):
+    contar_secuencia = secuencias[0]
+    lista_secuencia = list(contar_secuencia)
 
-            contar_str = strprueba[0] #Pasar de lista a string
-            listastr = list(contar_str) #Poner cada letra divida en comas en una lista
-
-            substring = cadena[i:i+len(listastr)]
-            #print(len(listastr))
-
+    contar_str = strprueba[0] #Pasar de lista a string
+    listastr = list(contar_str) #Poner cada letra divida en comas en una lista
+    
+    for listastr in secuencias:
+        contador = 0
+        i = 0
+        repeticiones = 0
+    
+        while i < len(lista_secuencia):
+            substring = contar_secuencia[i:i+len(listastr)]
+            
             if contar_str == substring:
                 contador = contador + 1
-        print(contador)
-            #return contador
-                
+                i = i + len(listastr)
+            else:
+                if contador > repeticiones:
+                    repeticiones = contador
+                contador = 0
+                i = i + 1
+
+        print(repeticiones)
+
 def main():
     pass
 
