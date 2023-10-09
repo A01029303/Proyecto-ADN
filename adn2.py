@@ -2,8 +2,8 @@ import os
 from pathlib import Path
 import sys
 
-def lectura_de_archivos_base_de_datos(nombre_base_de_datos):
-    f=open(nombre_base_de_datos) #Para abrir la base de datos
+def lectura_de_archivos_base_de_datos(ruta_b):
+    f=open(ruta_b) #Para abrir la base de datos
     base_de_datos=[]
     for linea in f:
         linea=linea[0:-1]
@@ -25,33 +25,42 @@ def lectura_de_archivos_base_de_datos(nombre_base_de_datos):
 
     return lista_resultante
 
-def lectura_de_secuencias(secuencias):
-    f1=open(secuencias)
+def lectura_de_secuencias(ruta_s):
+    f1=open(ruta_s)
     secuencia= []
     for linea1 in f1:
         linea1=linea1[0:-1]
         secuencia.append(linea1)
     return secuencia
 
-def compara_str(basededatos, secuencia_prueba):
-    for k in range(len(basededatos)): 
-        nombre= basededatos[k][0]
-        numeros= basededatos[k][1:]
+def compara_str(base_datos, secuencia_prueba):
+    for k in range(len(base_datos)): 
+        nombre= base_datos[k][0]
+        numeros= base_datos[k][1:]
         if numeros== secuencia_prueba:
             break
     return nombre
 
 def main():
     pass
-    basededatos=lectura_de_archivos_base_de_datos("/workspaces/Proyecto-ADN/dna/databases/large.csv")
-    print(basededatos)
-    secuencias = lectura_de_secuencias("/workspaces/Proyecto-ADN/dna/sequences/1.txt")
-    print(secuencias)
-    secuencia_prueba = [9,13,8,26,15,25,41,39]
+
+    directorio = os.getcwd()
+    subdirectorio_base_datos = Path("dna/databases")
+    archivo_b = sys.argv[1]
+    ruta_b = directorio / subdirectorio_base_datos / archivo_b
+ 
+    base_datos = lectura_de_archivos_base_de_datos(ruta_b)
+
+    subdirectorio_secuencias = Path("dna/sequences")
+    archivo_s = sys.argv[2]
+    ruta_s = directorio / subdirectorio_secuencias / archivo_s
+
+    secuencias = lectura_de_secuencias(ruta_s)
     
-    r = compara_str(basededatos,secuencia_prueba)
+    secuencia_prueba = [9,13,33,26,45,11,36,39]
+
+    r = compara_str(base_datos, secuencia_prueba)
     print(r)
 
 if __name__ == '__main__':
     main()
-
