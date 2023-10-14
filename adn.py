@@ -76,7 +76,7 @@ def main():
     ruta_b = directorio / subdirectorio_base_datos / archivo_b
  
     base_datos = lectura_de_archivos_base_de_datos(ruta_b)
-    print(base_datos)
+    #print(base_datos)
 
     subdirectorio_secuencias = Path("dna/sequences")
     archivo_s = sys.argv[2]
@@ -85,10 +85,10 @@ def main():
     secuencias = lectura_de_secuencias(ruta_s)
     #print(secuencias)
 
-    strprueba = ["TTTTTTCT"]
+    strprueba = ["GAAA"]
     
     buscarstr = buscar_str(secuencias,strprueba)
-    #print (buscarstr)
+    print (buscarstr)
 
 
     #secuencia_prueba = [9,13,33,26,45,11,36,39]
