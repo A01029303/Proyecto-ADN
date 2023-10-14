@@ -41,6 +41,32 @@ def compara_str(base_datos, secuencia_prueba):
             break
     return nombre
 
+def buscar_str(secuencias,strprueba):
+    contar_secuencia = secuencias[0] #AAGGTAAGTTTAGAATATAAAAGGTGAGTTAAA
+    lista_secuencia = list(contar_secuencia) #['A', 'A', 'G', 'G', 'T', 'A',.........]
+    
+    contar_str = strprueba[0] #TTTTTTCT
+    listastr = list(contar_str) #['T', 'T', 'T', 'T', 'T', 'T', 'C', 'T']
+    
+    contador = 0
+    i = 0
+    repeticiones = 0
+    
+    while i <= len(lista_secuencia):
+        substring = lista_secuencia[i:i+len(listastr)] #['A', 'A', 'G', 'G', 'T', 'A', 'A', 'G'],['A', 'G', 'G', 'T', 'A', 'A', 'G', 'T']
+            
+        if listastr == substring:
+            contador = contador + 1
+            i = i + len(listastr) - 1
+
+        else:
+            if contador > repeticiones:
+                repeticiones = contador
+                contador = 0
+        i = i + 1
+
+    return repeticiones
+
 def main():
     pass
 
@@ -50,17 +76,25 @@ def main():
     ruta_b = directorio / subdirectorio_base_datos / archivo_b
  
     base_datos = lectura_de_archivos_base_de_datos(ruta_b)
+    print(base_datos)
 
     subdirectorio_secuencias = Path("dna/sequences")
     archivo_s = sys.argv[2]
     ruta_s = directorio / subdirectorio_secuencias / archivo_s
 
     secuencias = lectura_de_secuencias(ruta_s)
-    
-    secuencia_prueba = [9,13,33,26,45,11,36,39]
+    #print(secuencias)
 
-    r = compara_str(base_datos, secuencia_prueba)
-    print(r)
+    strprueba = ["TTTTTTCT"]
+    
+    buscarstr = buscar_str(secuencias,strprueba)
+    #print (buscarstr)
+
+
+    #secuencia_prueba = [9,13,33,26,45,11,36,39]
+
+    #r = compara_str(base_datos, secuencia_prueba)
+    #print(r)
 
 if __name__ == '__main__':
     main()

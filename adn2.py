@@ -42,30 +42,30 @@ def compara_str(base_datos, secuencia_prueba):
     return nombre
 
 def buscar_str(secuencias,strprueba):
-    contar_secuencia = secuencias[0]
-    lista_secuencia = list(contar_secuencia)
-
-    contar_str = strprueba[0] #Pasar de lista a string
-    listastr = list(contar_str) #Poner cada letra divida en comas en una lista
+    contar_secuencia = secuencias[0] #AAGGTAAGTTTAGAATATAAAAGGTGAGTTAAA
+    lista_secuencia = list(contar_secuencia) #['A', 'A', 'G', 'G', 'T', 'A',.........]
     
-    for listastr in secuencias:
-        contador = 0
-        i = 0
-        repeticiones = 0
+    contar_str = strprueba[0] #TTTTTTCT
+    listastr = list(contar_str) #['T', 'T', 'T', 'T', 'T', 'T', 'C', 'T']
     
-        while i < len(lista_secuencia):
-            substring = contar_secuencia[i:i+len(listastr)]
+    contador = 0
+    i = 0
+    repeticiones = 0
+    
+    while i <= len(lista_secuencia):
+        substring = lista_secuencia[i:i+len(listastr)] #['A', 'A', 'G', 'G', 'T', 'A', 'A', 'G'],['A', 'G', 'G', 'T', 'A', 'A', 'G', 'T']
             
-            if contar_str == substring:
-                contador = contador + 1
-                i = i + len(listastr)
-            else:
-                if contador > repeticiones:
-                    repeticiones = contador
-                contador = 0
-                i = i + 1
+        if listastr == substring:
+            contador = contador + 1
+            i = i + len(listastr) - 1
 
-        print(repeticiones)
+        else:
+            if contador > repeticiones:
+                repeticiones = contador
+                contador = 0
+        i = i + 1
+
+    return repeticiones
 
 def main():
     pass
@@ -76,7 +76,7 @@ def main():
     ruta_b = directorio / subdirectorio_base_datos / archivo_b
  
     base_datos = lectura_de_archivos_base_de_datos(ruta_b)
-    #print(base_datos)
+    print(base_datos)
 
     subdirectorio_secuencias = Path("dna/sequences")
     archivo_s = sys.argv[2]

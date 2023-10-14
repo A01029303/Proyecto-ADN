@@ -1,0 +1,11 @@
+json
+{"name": "Python",
+"type": "python",
+"python":"${config.python.pythonPath}", 
+"request": "launch",
+"stopOnEntry": true,
+"console": "none",
+"program": "${file}",
+"cwd": "${workspaceRoot}",
+"args":["small.csv", "1.txt"],
+"env": {"name":"value"}}
