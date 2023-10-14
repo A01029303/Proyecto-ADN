@@ -34,14 +34,15 @@ def lectura_de_secuencias(ruta_s):
 
     return secuencia
 
-def compara_str(base_datos, secuencia_prueba):
+def compara_str(base_datos,buscarstr):
     for k in range(len(base_datos)): 
         nombre= base_datos[k][0]
         numeros= base_datos[k][1:]
-        if numeros== secuencia_prueba:
-            break
-    return nombre
-
+        if numeros == buscarstr:
+            return (nombre)
+            
+    return (False)
+    
 def buscar_str(secuencias,strprueba):
     contar_secuencia = secuencias[0] #AAGGTAAGTTTAGAATATAAAAGGTGAGTTAAA
     lista_secuencia = list(contar_secuencia) #['A', 'A', 'G', 'G', 'T', 'A',.........]
@@ -96,7 +97,6 @@ def main():
     #print(secuencias)
 
     strprueba_1 = buscar_str2(base_datos) #['AGATC', 'TTTTTTCT', 'AATG', 'TCTAG', 'GATA', 'TATC', 'GAAA', 'TCTG']
-    #restrprueba = ["TTTTTTCT"]
     
     buscarstr=[]
     for j in range(0,len(strprueba_1)):
@@ -106,10 +106,11 @@ def main():
         buscarstr.append(buscarstr_1)
     #print(buscarstr)
 
-    #buscarstr = [9,13,33,26,45,11,36,39]
-
     r = compara_str(base_datos, buscarstr)
-    print(r)
+    if r== False:
+        print("No match")
+    else:
+        print(r)
 
 if __name__ == '__main__':
     main()
